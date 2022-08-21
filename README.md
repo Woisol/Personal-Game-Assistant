@@ -4,6 +4,8 @@ Personal Game Assister especially for Woisol when playing his games.
 
 Woisol's second useful app
 
+More infor in the beginning of the c file so far...(Lazy to retype now,maybe 1 year after?)
+
 # Features
 
 1.Kill unimportant apps duing to the code,help start apps when just boost the PC,or simply open apps after gaming according to PreRecovery code.
