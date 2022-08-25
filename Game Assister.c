@@ -1,4 +1,4 @@
-/******************************************************************
+/*给我设中文！*****************************************************************
 07-31 1.0 
 Basic options
 
@@ -89,7 +89,10 @@ Fix unablility of open QQ in code Q...
 [not]Shall be the Final Vervion...(It was for serverl times...)
 
 08-20 3.6.3
-Add tips of recovery...
+Add respond to recovery...
+
+08-25 3.6.4
+Improve the struction of start-boot code...
 *******************************************************************/
 #include<stdio.h>
 #include<conio.h>
@@ -145,18 +148,17 @@ First numb control the first 4 apps...\n\n");
     open();
     // Sleep(1000);
 
-    if(t!='s' || g!=27)//!(t=='s && g==27)
+    if(t=='s' && g==27){}
+    system("cls");
+    printf("Ready to reboot\n\nPress G to open another game...\nR to reboot...\n");
+    t=getch();
+    Switch1: switch (t)
     {
-        system("cls");
-        printf("Ready to reboot\n\nPress G to open another game...\nR to reboot...\n");
-        t=getch();
-        Switch1: switch (t)
-        {
-            case 'g':goto Open;
-            case 'r':break;
-            default: goto Switch1;            
-        }
+        case 'g':goto Open;
+        case 'r':break;
+        default: goto Switch1;
     }
+
     if(t=='s')
     {
         system("start /d D:\\WoisolG\\Steam\\steamapps\\common\\wallpaper_engine wallpaper32.exe");
@@ -167,17 +169,41 @@ First numb control the first 4 apps...\n\n");
     }
     else
     {
-        system("cls");
-        printf("Ready to reboot\n\nPress G to open another game...\nR to reboot...\n");
-        t=getch();
-        Switch2: switch (t)
-        {
-            case 'g':goto Open;
-            case 'r':break;
-            default: goto Switch2;            
-        }
         rec();
     }
+    // if(t!='s' || g!=27)//!(t=='s && g==27)
+    // {
+    //     system("cls");
+    //     printf("Ready to reboot\n\nPress G to open another game...\nR to reboot...\n");
+    //     t=getch();
+    //     Switch1: switch (t)
+    //     {
+    //         case 'g':goto Open;
+    //         case 'r':break;
+    //         default: goto Switch1;            
+    //     }
+    // }
+    // if(t=='s')
+    // {
+    //     system("start /d D:\\WoisolG\\Steam\\steamapps\\common\\wallpaper_engine wallpaper32.exe");
+    //     system("start /d G:\\WindowTop WindowTop.exe");
+    //     system("start /d D:\\WoisolG\\rainmeter Rainmeter.exe");
+    //     system("start /d \"C:\\Program Files\\PowerToys\" PowerToys.exe");
+    //     system("start /d \"G:\\QQ\\Bin\" QQ.exe");
+    // }
+    // else
+    // {
+    //     system("cls");
+    //     printf("Ready to reboot\n\nPress G to open another game...\nR to reboot...\n");
+    //     t=getch();
+    //     Switch2: switch (t)
+    //     {
+    //         case 'g':goto Open;
+    //         case 'r':break;
+    //         default: goto Switch2;            
+    //     }
+    //     rec();
+    // }
     
     // if(t=='s')//Can still be better...优先判断字幕段或许可以实现
     // {
