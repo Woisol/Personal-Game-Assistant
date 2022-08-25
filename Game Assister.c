@@ -1,4 +1,4 @@
-/*给我设中文！*****************************************************************
+/*给我设中文！！！*****************************************************************
 07-31 1.0 
 Basic options
 
@@ -93,6 +93,7 @@ Add respond to recovery...
 
 08-25 3.6.4
 Improve the struction of start-boot code...
+No longer kill some needed apps now...
 *******************************************************************/
 #include<stdio.h>
 #include<conio.h>
@@ -100,7 +101,7 @@ Improve the struction of start-boot code...
 #include<time.h>
 #define MOUSEX 65535/1920
 #define MOUSEY 65535/1080
-short int wp=0,wt=0,rm=0,pt=0,qq=0,eg=0,cm=0,sd=0,nas=0,g=0,t=0;//直接可以在这里加开机自启预设哈哈:)……牵连到一大堆改动……:(//Deleted...
+short int pt=0,qq=0,eg=0,cm=0,sd=0,nas=0,g=0,t=0;//直接可以在这里加开机自启预设哈哈:)……牵连到一大堆改动……:(//Deleted...//wp=0,wt=0,rm=0,
 short int k[3];
 void kill();
 void open();
@@ -112,14 +113,14 @@ int main(void)
     system("color 0e");
     system("echo off");//?
     printf("|||Start improving?|||\n\napps now suppurted:\
-    \nWallpaper,Windowtop,rainmeter,PowerToys,\nQQ,Edge,Cloudmusic,Spacedesk,Aurora,\nBilibili\n\n");
+    \nPowerToys,\nQQ,Edge,Cloudmusic,Spacedesk,Aurora,\nBilibili\n\n");//Wallpaper,Windowtop,rainmeter,
     printf("\
 Press any key to continue.\n\
 Press S to start-boot.\n\
 Press Q to play without QQ.\n\
 Support PreRecovery Code now,\n\
 type numb in order to continue...\n\
-First numb control the first 4 apps...\n\n");
+First numb control the first line...\n\n");
 
     B:
     t=getch();
@@ -127,7 +128,7 @@ First numb control the first 4 apps...\n\n");
     switch (t)
     {
     case '0':case '1':
-        wp=wt=rm=pt=t-48;//Also attention to the diffrence of char and int!!!
+        pt=t-48;//Also attention to the diffrence of char and int!!!//wp=wt=rm=
         for (short int n=0;n<4;n++)//???n<4时确实错了，但为什么会Endless呢？……???没错啊是n<4啊………………现在又没问题了…………
         {
             if((k[n]=getch()-48)!=0 && k[n]!=1){printf("Error,pls retype the code\n");goto B;}
@@ -143,12 +144,12 @@ First numb control the first 4 apps...\n\n");
     
     Open:system("cls");
     // if(t=='0'||t=='1')
-    {printf("Your Recovery Code:%d%d%d%d%d\n\n",wp,qq,eg,cm,sd);}
+    {printf("Your Recovery Code:%d%d%d%d%d\n\n",pt,qq,eg,cm,sd);}
     if(nas=1 && !(t=='0' || t=='1' || t=='s')){printf("NAS may be running but unabled to kill,\nplease kill it your own.\n\n");}//Review order of calculate!!!
     open();
     // Sleep(1000);
 
-    if(t=='s' && g==27){}
+    if(t=='s' && g==27){goto ST;}
     system("cls");
     printf("Ready to reboot\n\nPress G to open another game...\nR to reboot...\n");
     t=getch();
@@ -159,7 +160,7 @@ First numb control the first 4 apps...\n\n");
         default: goto Switch1;
     }
 
-    if(t=='s')
+    ST:if(t=='s')
     {
         system("start /d D:\\WoisolG\\Steam\\steamapps\\common\\wallpaper_engine wallpaper32.exe");
         system("start /d G:\\WindowTop WindowTop.exe");
@@ -244,9 +245,9 @@ First numb control the first 4 apps...\n\n");
 void kill()
 {
     // extern int qq,pt,wp,sd,cm,nas;//全局变量是不必用extern在函数内再定义的...在函数内定义的变量是作为局部的另一变量，加了extern便代表是用外部的变量...
-    if(system("taskkill /t /f /im wallpaper32.exe")==0){wp=1;}//所以失败的时候是什么？……
-    if(system("taskkill /t /f /im WindowTop.exe")==0){wt=1;}//If fail its -1,DONOT confuse!//说是按Q但实际上检测的要是q哈！！
-    if(system("taskkill /t /f /im Rainmeter.exe")==0){rm=1;}
+    // if(system("taskkill /t /f /im wallpaper32.exe")==0){wp=1;}//所以失败的时候是什么？……
+    // if(system("taskkill /t /f /im WindowTop.exe")==0){wt=1;}//If fail its -1,DONOT confuse!//说是按Q但实际上检测的要是q哈！！
+    // if(system("taskkill /t /f /im Rainmeter.exe")==0){rm=1;}
     if(system("taskkill /t /f /im PowerToys.exe")==0){pt=1;}//所以如果删除失败也算没执行成功……
     if(system("taskkill /t /f /im msedge.exe")==0){eg=1;}//Unabled to kill it...Shown killed but still running...Why???
     if(system("taskkill /t /f /im cloudmusic.exe")==0){cm=1;}
@@ -342,7 +343,7 @@ void open()
             click(1030,250);
 
         }
-        O:Sleep(5000);
+        O:Sleep(2000);
     }
                                                                 //Call of Duty BO3
     else if(g=='2')
@@ -396,9 +397,9 @@ void rec()
     printf("Recovering...\n");
     if (g=='1'){system("taskkill /t /f /im fraps.exe");system("taskkill /t /f /im launcher.exe");}//这里原来要判断两次分别关掉…………
     if (g=='2'){system("taskkill /t /f /im \"BO3 ZM Trainer 1.3.3\"");system("taskkill /t /f /im BO3OfflineSwitcherUpdate9.EXE");}
-    if (wp==1){system("start /d D:\\WoisolG\\Steam\\steamapps\\common\\wallpaper_engine wallpaper32.exe");}//so when using start it can start at a time right?...
-    if (wt==1){system("start /d G:\\WindowTop WindowTop.exe");}
-    if (rm==1){system("start /d D:\\WoisolG\\rainmeter Rainmeter.exe");}
+    // if (wp==1){system("start /d D:\\WoisolG\\Steam\\steamapps\\common\\wallpaper_engine wallpaper32.exe");}//so when using start it can start at a time right?...
+    // if (wt==1){system("start /d G:\\WindowTop WindowTop.exe");}
+    // if (rm==1){system("start /d D:\\WoisolG\\rainmeter Rainmeter.exe");}
     if (pt==1){system("start /d \"C:\\Program Files\\PowerToys\" PowerToys.exe");}
     if (qq==1){system("start /d \"G:\\QQ\\Bin\" QQ.exe");}
     if (eg==1){system("start /d \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\" msedge.exe");}
